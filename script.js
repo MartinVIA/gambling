@@ -77,7 +77,16 @@ function nextHand()
 {
     if (isSplit)
     {
-     return 
+     if(!mainDone) 
+     {
+        activeHand = "main";
+        return;
+     }
+     if (!splitDone)
+     {
+        activeHand = "split";
+        return;
+     }
     }
 }
 
