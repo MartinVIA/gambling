@@ -1,32 +1,34 @@
 # gambling
 
-## Card logic [Leon]{}
+## Card logic [Leon]
+    {
+        Card pulling system
+        Deck randomization
 
-## player [Victor]{
-###    buttons{
-###        title card
-###        while game
-###    }
-###    controls{
-###        keyboard function
-###    }
-### }
+        Player card game logic [Loke]
+    }
+
+## player [Victor]
+### buttons
+    title card
+    while game
+### controls
+    keyboard function
     
 ## processing & house AI [Martin]
+    {
 
-## Title card [Loke]{
-##     Settings Information 
-## 
-## }
-Internal Storage system [Vic]
-{High score/Money & usernames}
+    }
 
-assets & visuals [Leon]{
+## Title card [Loke]
+        Settings Information 
 
-}
+## Internal Storage system [Vic]
+        High score/Money & usernames
 
-Animations [Adam]{
+## Assets & visuals [Leon]
+    
+## Animations [Adam]
     Card flipping
     card pulling
     Buttons
-}
