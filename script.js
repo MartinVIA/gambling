@@ -30,10 +30,11 @@ function generate(){
 
     const randomIndex = Math.floor(Math.random() * deck.length);
     const selectedCard = deck[randomIndex];
+    const imageUrl = `images/${selectedCard.value}_of_${selectedCard.suit}.png`;
 
     // update the card text
     document.getElementById('card').textContent = `Card is ${selectedCard.value} of ${selectedCard.suit}`;
-    var imageUrl=`images/${selectedCard.value}_of_${se
+    //  imageUrl=`images/${selectedCard.value}_of_${s;
     document.getElementById("cardImage").src=imageUrl;
 
     
@@ -65,6 +66,7 @@ document.getElementById('DoubleButton').onclick = doubleHand;
 document.getElementById('SplitButton').onclick = splitHand;
 
 
+document.getElementById("popup").style.display = "none";
 // blackjack logic with arrays as hands
 
 let dealerHand = [];
@@ -76,7 +78,11 @@ function convertCards(hand)
 {
     if(card.value )
     {
-     return 
+     return 11
+    }
+    if(card.value)
+    {
+        
     }
 }
 
