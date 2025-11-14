@@ -1,5 +1,7 @@
 # gambling
 
+
+
 ## Card logic [Leon]
     Card pulling system
     Deck randomization
@@ -31,3 +33,7 @@
     Card flipping
     card pulling
     Buttons
+
+# next up
+* implement title card, background and button colors
+* implement picked card system
