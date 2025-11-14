@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="style.css">
 <head>
     <title>Yes</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <p>GAMBLINGGGG for sigmas</p>
@@ -25,12 +25,21 @@
         they count as a 1, and the rest of the cards count as their own numerical values.
     </p>
     <div>
-        <button id="Deal">StartRound</button>
-        <button id="Hit">HitButton</button>
-        <button id="Stand">StandButton</button>
-        <button id="Double">DoubleButton</button>
-        <button id="Split">SplitButton</button>
+        <button id="DealButton">Start round</button>
+        <button id="HitButton">Hit</button>
+        <button id="StandButton">Stand</button>
+        <button id="DoubleButton">Double</button>
+        <button id="SplitButton">Split</button>
 
     </div>
+    <div id="popup">
+        <p>Username????</p>
+        <input placeholder="Nickname">
+        <button id = "close">Submit</button>
+    </div>
+    <script>
+        document.getElementById("popup").style.display = "none";
+    </script>
+</div>
 </body>
 </html> 

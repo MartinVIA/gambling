@@ -9,6 +9,7 @@
 ## player [Victor]
 ### buttons
     title card
+    type username on title card
     while game
 ### controls
     keyboard function
