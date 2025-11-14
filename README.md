@@ -1,12 +1,10 @@
 # gambling
 
 ## Card logic [Leon]
-    {
-        Card pulling system
-        Deck randomization
+    Card pulling system
+    Deck randomization
 
-        Player card game logic [Loke]
-    }
+    Player card game logic [Loke]
 
 ## player [Victor]
 ### buttons
@@ -21,10 +19,10 @@
     }
 
 ## Title card [Loke]
-        Settings Information 
+    Settings Information 
 
 ## Internal Storage system [Vic]
-        High score/Money & usernames
+    High score/Money & usernames
 
 ## Assets & visuals [Leon]
     
