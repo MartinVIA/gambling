@@ -1,25 +1,23 @@
 # gambling
 
-Card logic [Leon]{
+## Card logic [Leon]{}
 
-}
-
-player [Victor]
-{
-    buttons{
-        title card
-        while game
-    }
-    controls{
-        keyboard function
-    }
-}
+## player [Victor]{
+###    buttons{
+###        title card
+###        while game
+###    }
+###    controls{
+###        keyboard function
+###    }
+### }
     
-processing & house AI [Martin]
-Title card [Loke]{
-    Settings Information 
+## processing & house AI [Martin]
 
-}
+## Title card [Loke]{
+##     Settings Information 
+## 
+## }
 Internal Storage system [Vic]
 {High score/Money & usernames}
 
