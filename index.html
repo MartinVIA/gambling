@@ -2,50 +2,79 @@
 <html>
     <link rel="stylesheet" href="style.css">
 <head>
-    <title>Yes</title>
+    <title>GAMBLING BABBYYY</title>
     <script src="script.js" defer></script>
 </head>
 <body>
-    <p>GAMBLINGGGG for sigmas</p>
-    <button type="button" onclick="generate()">Pull a card</button>
-    <p id="card"></p>
-    <div class="rounded">
-        <h1 class="number">a</h1>
-        <img id="cardImage" src="images/None.png" style="width: 100px;">
-
+    <div class="controls">
+        <label>Balance: $<span id="balance">1000</span></label>
+        <label style="margin-left:12px">Bet: $<input id="betAmount" type="number" value="10" min="1" style="width:80px"></label>
+        <button id="placeBetBtn" onclick="placeBet()">Place Bet</button>
     </div>
-    <p>
-        Welcome to the game of blackjack. Blackjack is a game of choices and chance. The name of the game is to beat the dealer
-        and get closest to 21 while not exceeding it, once you exceed 21 you bust and lose. The player has 3-4 choices when 
-        playing the game, hit, stand, double and split. Hitting will give you another card, if you choose to stand you get no 
-        further cards, if you choose double, the bet will double and you only get 1 more card. There will be instances where 
-        you get two cards of equal numbers, in that case you get the option to split the cards and play 2 seperate hands.
-        While the player gets to make these choices, the house dosen't. The house is forced to hit while it has a sum of less 
-        than 17, and has to stand if it's 17 or above. Face cards count as a 10, aces count as 11, unless you exceed 21 then 
-        they count as a 1, and the rest of the cards count as their own numerical values.
-    </p>
+
+    <p id="card"></p>
+
+    <!-- Info button (top right) -->
+    <button class="info-btn" onclick="toggleInfoModal()">
+        <img src="images/info.png" alt="Info" />
+    </button>
+
+    <!-- Info modal (hidden by default) -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <button class="close-info" onclick="toggleInfoModal()">×</button>
+            <p>
+                Welcome to the game of blackjack. Blackjack is a game of choices and chance. The name of the game is to beat the dealer
+                and get closest to 21 while not exceeding it, once you exceed 21 you bust and lose. The player has 3-4 choices when 
+                playing the game, hit, stand, double and split. Hitting will give you another card, if you choose to stand you get no 
+                further cards, if you choose double, the bet will double and you only get 1 more card. There will be instances where 
+                you get two cards of equal numbers, in that case you get the option to split the cards and play 2 seperate hands.
+                While the player gets to make these choices, the house dosen't. The house is forced to hit while it has a sum of less 
+                than 17, and has to stand if it's 17 or above. Face cards count as a 10, aces count as 11, unless you exceed 21 then 
+                they count as a 1, and the rest of the cards count as their own numerical values.
+            </p>
+        </div>
+    </div>
+
+    <!-- Title card centered at very top -->
+    <div class="title-card">
+        <img src="images/titlecard.png" alt="Title" />
+    </div>
+
+    <!-- Deck pile (card back stack) -->
+    <div class="deck-pile">
+        <img src="images/back_of_cards.png" alt="Deck" class="deck-back" />
+    </div>
+
+    <!-- Flying card animation container -->
+    <div id="flyingCardContainer"></div>
+
+    <div class="game-area">
+        <div class="hand-box">
+            <h3>Dealer (<span id="dealerScore">?</span>)</h3>
+            <div id="dealerArea" class="hand"></div>
+        </div>
+        <div class="hand-box">
+            <h3>Player Main (<span id="playerScoreMain">0</span>)</h3>
+            <div id="playerArea" class="hand"></div>
+            <div id="playerSplitBox" style="display:none;">
+                <h3 style="margin-top:8px">Player Split (<span id="playerScoreSplit">0</span>)</h3>
+                <div id="playerSplitArea" class="hand"></div>
+            </div>
+        </div>
+    </div>
     <div>
-        <button id="DealButton">Start round</button>
         <button id="HitButton">Hit</button>
         <button id="StandButton">Stand</button>
         <button id="DoubleButton">Double</button>
         <button id="SplitButton">Split</button>
 
     </div>
-    <div>
-        <img id="titlecard" src="images/titlecard.png">
-
-    </div>
     <div id="popup">
-        <p>Username????</p>
+        <p>what would you like your username to be?</p>
         <input placeholder="Nickname">
-        <button id = "close">Enter</button>
+        <button id = "close">Submit</button>
     </div>
-    <script>
-        document.getElementById("close").onclick = function() {
-            document.getElementById("popup").style.display = "none";
-        }           
-    </script>
 </div>
 </body>
 </html> 

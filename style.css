@@ -2,38 +2,245 @@
     font-family: cardFont;
     src: url(cardcharacters.ttf);
 }
-html{
-  background-image: url(/images/bg1f.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family:cardFont;
-}
 .number{
   font-family:cardFont;
 }
 .rounded{padding: 1%;margin: 3% 1%;border-radius:25px;float: left;background-image: linear-gradient(to bottom, rgb(15, 189, 160) , rgb(83, 229, 248))}
 
-.titlebutton{
+.controls{margin: 4px 0}
+.game-area{display:flex;gap:12px;margin-top:8px}
+.game-area{flex-direction:column;justify-content:space-between;height:calc(100vh - 300px);align-items:center;position:relative}
+.hand-box{flex:1;max-width:900px;width:85%}
+/* Center the cards horizontally and vertically within the hand area */
+.hand{min-height:120px;padding:4px;border-radius:0;background:transparent;display:flex;gap:10px;align-items:center;justify-content:center}
+/* larger card thumbnails for dealer and player */
+.card-thumb{width:100px;height:150px;object-fit:cover;border-radius:6px;box-shadow:0 4px 8px rgba(0,0,0,0.35)}
+.status{margin-top:8px}
 
+/* Subtle visual refinements */
+.title-card img{border-radius:8px;opacity:0.98}
+
+/* Headings above hands: subtle, semi-transparent, pill-like */
+.hand-box > h3{
+  margin:0 0 8px 0;
+  text-align:center;
+  font-size:16px;
+  font-weight:500;
+  color:rgba(255,255,255,0.95);
+  text-shadow:0 2px 6px rgba(0,0,0,0.55);
+  display:inline-block;
+  padding:6px 12px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border-radius:999px;
 }
 
-#popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    background: whitesmoke;
-    padding: 25px;
-    width: 300px;
-    opacity: 0.85;
+/* Make controls subtle and centered */
+.controls{display:flex;justify-content:center;gap:10px;align-items:center;background:rgba(0,0,0,0.18);padding:6px;border-radius:8px}
+.controls label{color:#333;font-weight:500;font-size:14px}
+.controls input{background:transparent;border:2px solid rgba(60,60,80,0.7);color:#222;padding:4px 8px;border-radius:4px;font-size:13px}
+.controls button{background:transparent;border:2px solid rgba(60,60,80,0.7);color:#222;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;transition:all 150ms ease;font-size:13px}
+.controls button:hover{border-color:rgba(80,80,100,0.9);background:rgba(255,255,255,0.08)}
+.controls button:active{transform:scale(0.98)}
 
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-    z-index: 9999;
+/* Game control buttons styling */
+#HitButton, #StandButton, #DoubleButton, #SplitButton {
+  background:transparent;
+  border:2px solid rgba(255, 255, 255, 0.95); /* brighter border */
+  color:#fff; /* brighter text */
+  text-shadow:0 1px 0 rgba(0,0,0,0.45);
+  font-weight:700;
+  padding:8px 16px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:all 150ms ease;
+  font-size:14px;
+}
+#HitButton:hover, #StandButton:hover, #DoubleButton:hover, #SplitButton:hover {
+  border-color:rgba(255,255,255,1);
+  background:rgba(255,255,255,0.10);
+}
+#HitButton:active, #StandButton:active, #DoubleButton:active, #SplitButton:active {
+  transform:scale(0.98);
+}
+#HitButton:disabled, #StandButton:disabled, #DoubleButton:disabled, #SplitButton:disabled {
+  opacity:0.5;
+  cursor:not-allowed;
+}
 
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
+/* Card hover lift for a gentle tactile feel */
+.card-thumb{transition:transform 180ms ease, box-shadow 180ms ease}
+.card-thumb:hover{transform:translateY(-8px);box-shadow:0 18px 30px rgba(0,0,0,0.45)}
+
+/* Mobile and compact resolution adjustments */
+@media (max-height:1850px){
+  .card-thumb{width:95px;height:140px}
+  .hand{min-height:115px;gap:8px}
+  .hand-box > h3{font-size:14px;padding:4px 8px}
+  .title-card img{width:52%}
+}
+@media (max-width:720px){
+  .card-thumb{width:85px;height:125px}
+  .hand{min-height:100px}
+  .hand-box > h3{font-size:13px;padding:3px 6px}
+  .title-card img{width:70%}
+}
+
+/* Page background image (add file images/bg1f.png) */
+body{
+  background-image: url('images/bg1f.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Make dealer area appear at the top and player area at the bottom and center horizontally */
+.game-area > .hand-box:first-child{align-self:center}
+.game-area > .hand-box:last-child{align-self:center}
+
+/* Hide split area container by default; shown when the player splits */
+#playerSplitBox{display:none}
+
+/* Title card styling: centered at the very top above dealer */
+.title-card{display:flex;justify-content:center;width:100%;padding-top:6px}
+.title-card img{display:block;max-width:600px;width:55%;height:auto;pointer-events:none}
+
+/* Info button styling (top right) */
+.info-btn{
+  position:fixed;
+  top:8px;
+  right:8px;
+  width:50px;
+  height:50px;
+  padding:0;
+  background:none;
+  border:none;
+  cursor:pointer;
+  z-index:100;
+  transition:transform 150ms ease, opacity 150ms ease;
+}
+.info-btn img{width:100%;height:100%;object-fit:contain}
+.info-btn:hover{transform:scale(1.1)}
+.info-btn:active{transform:scale(0.95)}
+
+/* Info modal: hidden by default, positioned center */
+.info-modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+}
+.info-modal.active{display:flex}
+
+/* Modal content box */
+.info-modal-content{
+  background:rgba(20,20,30,0.95);
+  border:2px solid rgba(255,255,255,0.15);
+  border-radius:12px;
+  padding:24px;
+  max-width:600px;
+  width:90%;
+  max-height:70vh;
+  overflow-y:auto;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+.info-modal-content p{
+  color:#fff;
+  line-height:1.6;
+  font-size:14px;
+  margin:0;
+}
+
+/* Close button for modal */
+.close-info{
+  position:absolute;
+  top:10px;
+  right:12px;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:28px;
+  cursor:pointer;
+  padding:0;
+  width:30px;
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:color 150ms ease;
+}
+.close-info:hover{color:#aaa}
+
+/* Deck pile styling */
+.deck-pile{
+  /* Anchor deck visually to the table to the right of the centered hands */
+  position:fixed;
+  left:50%;
+  transform:translateX(320px);
+  top:calc(50% - 70px); /* vertically centered relative to the table */
+  width:100px;
+  height:140px;
+  pointer-events:none;
+  z-index:0; /* sit behind cards */
+  opacity:0.98;
+}
+.deck-back{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+/* Flying card animation */
+@keyframes cardFlip{
+  0%{
+    opacity:1;
+    transform:translateX(0) translateY(0) scaleX(1);
+    background-image:url('images/back_of_cards.png');
+  }
+  40%{
+    opacity:1;
+    transform:translateX(var(--tx, 0px)) translateY(var(--ty, 0px)) scaleX(1);
+    background-image:url('images/back_of_cards.png');
+  }
+  50%{
+    opacity:0.3;
+    transform:translateX(var(--tx, 0px)) translateY(calc(var(--ty, 0px) - 60px)) scaleX(0.02);
+    background-image:url('images/back_of_cards.png');
+  }
+  51%{
+    opacity:0.3;
+    transform:translateX(var(--tx, 0px)) translateY(calc(var(--ty, 0px) - 60px)) scaleX(0.02);
+    background-image:var(--cardFace);
+  }
+  60%{
+    opacity:0.3;
+    transform:translateX(var(--tx, 0px)) translateY(calc(var(--ty, 0px) - 60px)) scaleX(0.02);
+    background-image:var(--cardFace);
+  }
+  100%{
+    opacity:1;
+    transform:translateX(var(--tx, 0px)) translateY(var(--ty, 0px)) scaleX(1);
+    background-image:var(--cardFace);
+  }
+}
+
+.flying-card{
+  position:fixed;
+  left:0; /* set by JS to the deck's center */
+  top:0;  /* set by JS to the deck's center */
+  width:100px;
+  height:140px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  pointer-events:none;
+  z-index:50; /* above the table, below top UI */
+  animation:cardFlip 0.8s ease-in-out forwards;
 }
